@@ -4,7 +4,7 @@
   "description": "Fastest Outlook AI Reply add-in",
   "main": "api/generate.ts",
   "engines": {
-    "node": "18.x"
+    "node": "24.x"
   },
   "scripts": {
     "build": "tsc",

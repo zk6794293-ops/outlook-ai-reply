@@ -2,7 +2,7 @@
   "version": 2,
   "functions": {
     "api/user.js": {
-      "runtime": "node24.x"
+      "runtime": "node20.x"
     }
   }
 }

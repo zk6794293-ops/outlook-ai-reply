@@ -1,13 +1,27 @@
-import { kv } from '@vercel/kv'
+import { Redis } from '@upstash/redis'
+
+const kv = Redis.fromEnv()
 
 export default async function handler(req, res) {
   try {
     // Cron job: daily 12am UTC reset
     if (req.method === 'POST') {
-      const users = await kv.keys('user:*')
-      const today = new Date().toISOString().split('T')[0]
+      let cursor = 0
+      let users = []
 
+      // Upstash me keys nahi chalta, scan use karte hain
+      do {
+        const [nextCursor, keys] = await kv.scan(cursor, {
+          match: 'user:*',
+          count: 1000
+        })
+        cursor = nextCursor
+        users.push(...keys)
+      } while (cursor!== 0)
+
+      const today = new Date().toISOString().split('T')[0]
       let resetCount = 0
+
       for (const key of users) {
         const user = await kv.hgetall(key)
         if (user?.lastReset!== today && user?.pro!== 'true') {

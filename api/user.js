@@ -1,6 +1,6 @@
 import { kv } from '@vercel/kv'
 
-export default async function handler(req: any, res: any) {
+export default async function handler(req, res) {
   try {
     // Cron job: daily 12am UTC reset
     if (req.method === 'POST') {
@@ -19,7 +19,7 @@ export default async function handler(req: any, res: any) {
     }
 
     // GET: user status
-    const email = req.query.email as string
+    const email = req.query.email
     if (!email) return res.status(400).json({ error: 'email required' })
 
     const key = `user:${email}`

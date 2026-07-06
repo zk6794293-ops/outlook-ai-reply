@@ -1,10 +1,10 @@
 {
   "functions": {
-    "api/user.ts": {
-      "runtime": "@vercel/node@3.0.0"
+    "api/user.js": {
+      "runtime": "nodejs18.x"
     },
-    "api/generate.ts": {
-      "runtime": "@vercel/node@3.0.0"
+    "api/generate.js": {
+      "runtime": "nodejs18.x"
     }
   }
 }

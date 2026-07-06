@@ -3,6 +3,7 @@
   "version": "2.0.0",
   "description": "Fastest Outlook AI Reply add-in",
   "main": "api/generate.ts",
+  "type": "module",
   "engines": {
     "node": "24.x"
   },
@@ -11,7 +12,7 @@
     "dev": "vercel dev"
   },
   "dependencies": {
-    "@vercel/kv": "^1.0.0",
+    "@vercel/kv": "^2.0.0",
     "groq-sdk": "^0.13.0",
     "stripe": "^14.0.0"
   },

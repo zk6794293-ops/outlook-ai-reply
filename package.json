@@ -1,0 +1,20 @@
+{
+  "name": "outlook-ai-reply",
+  "version": "2.0.0",
+  "description": "Fastest Outlook AI Reply add-in",
+  "main": "api/generate.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "vercel dev"
+  },
+  "dependencies": {
+    "@vercel/kv": "^1.0.0",
+    "groq-sdk": "^0.4.2",
+    "stripe": "^14.0.0",
+    "office-js": "^1.1.70"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  }
+}

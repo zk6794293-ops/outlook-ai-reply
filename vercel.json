@@ -1,6 +1,15 @@
 {
-  "crons": [{
-    "path": "/api/user",
-    "schedule": "0 0 * * *"
-  }]
+  "version": 2,
+  "builds": [
+    {
+      "src": "api/user.ts",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/user",
+      "dest": "api/user.ts"
+    }
+  ]
 }

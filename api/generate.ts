@@ -1,10 +1,32 @@
-import type { VercelRequest, VercelResponse } from '@vercel/node'
 import Groq from 'groq-sdk'
-import { incCount, getUser } from '../lib/db'
+import { kv } from '@vercel/kv'
 
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY })
 
-export default async function handler(req: VercelRequest, res: VercelResponse) {
+// KV helper functions - db.ts ki zaroorat nahi
+async function getUser(email: string) {
+  const key = `user:${email}`
+  const data = await kv.hgetall(key)
+  const count = Number(data?.count?? 0)
+  const pro = data?.pro === 'true'
+  return { count, pro }
+}
+
+async function incCount(email: string) {
+  const key = `user:${email}`
+  const user = await getUser(email)
+
+  // Pro user = no limit
+  if (user.pro) return true
+
+  // Free user: 20/day limit
+  if (user.count >= 20) return false
+
+  await kv.hset(key, { count: user.count + 1 })
+  return true
+}
+
+export default async function handler(req: any, res: any) {
   if (req.method!== 'POST') return res.status(405).end()
 
   const { email, original, tone = 'short' } = req.body

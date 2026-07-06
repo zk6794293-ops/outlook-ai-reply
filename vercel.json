@@ -1,0 +1,10 @@
+{
+  "functions": {
+    "api/user.ts": {
+      "runtime": "@vercel/node@3.0.0"
+    },
+    "api/generate.ts": {
+      "runtime": "@vercel/node@3.0.0"
+    }
+  }
+}

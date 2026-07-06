@@ -1,0 +1,7 @@
+{
+  "functions": {
+    "api/user.js": {
+      "runtime": "nodejs24.x"
+    }
+  }
+}

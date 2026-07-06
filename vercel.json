@@ -3,11 +3,5 @@
     "api/*.ts": {
       "runtime": "@vercel/node"
     }
-  },
-  "crons": [
-    {
-      "path": "/api/user",
-      "schedule": "@daily"
-    }
-  ]
-} 
+  }
+}

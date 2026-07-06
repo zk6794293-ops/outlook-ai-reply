@@ -1,7 +1,7 @@
-import { VercelRequest, VercelResponse } from '@vercel/node'
+import type { NextApiRequest, NextApiResponse } from 'next'
 import { kv } from '@vercel/kv'
 
-export default async function handler(req: VercelRequest, res: VercelResponse) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   // Cron job: daily 12am UTC reset - vercel.json se trigger
   if (req.method === 'POST') {
     const users = await kv.keys('user:*')
@@ -9,7 +9,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     for (const key of users) {
       const user = await kv.hgetall(key)
-      if (user.lastReset!== today && user.pro!== 'true') {
+      if (user?.lastReset!== today && user?.pro!== 'true') {
         await kv.hset(key, { count: 0, lastReset: today })
       }
     }

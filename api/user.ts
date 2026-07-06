@@ -1,7 +1,6 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
 import { kv } from '@vercel/kv'
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(req: any, res: any) {
   // Cron job: daily 12am UTC reset - vercel.json se trigger
   if (req.method === 'POST') {
     const users = await kv.keys('user:*')

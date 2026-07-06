@@ -1,5 +1,6 @@
-import { kv } from '@vercel/kv'
+import { Redis } from '@upstash/redis'
 
+const kv = Redis.fromEnv()
 const DAILY_LIMIT = 20
 
 export async function getUser(email: string) {

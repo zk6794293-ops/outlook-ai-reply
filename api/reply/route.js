@@ -1,3 +1,5 @@
 export async function POST(req) {
-  return Response.json({ reply: "Deploy working! API coming next 🚀" })
+  const { email } = await req.json()
+  const reply = `Test Reply: ${email.slice(0,40)}...`
+  return Response.json({ reply })
 }

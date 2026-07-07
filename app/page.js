@@ -37,4 +37,22 @@ export default function Home() {
         placeholder="Paste your Outlook email here..."
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-        style={{width: '100%', height: '150px', padding: '12px', fontSize
+        style={{width: '100%', height: '150px', padding: '12px', fontSize: '16px', borderRadius: '8px', border: '1px solid #ccc'}}
+      />
+      
+      <button 
+        onClick={generateReply}
+        disabled={loading}
+        style={{width: '100%', padding: '14px', marginTop: '12px', background: '#0078d4', color: 'white', border: 'none', borderRadius: '8px', fontSize: '16px', cursor: 'pointer'}}
+      >
+        {loading ? 'Generating...' : 'Generate AI Reply'}
+      </button>
+      
+      {reply && (
+        <div style={{marginTop: '20px', padding: '16px', background: '#f3f3f3', borderRadius: '8px', whiteSpace: 'pre-wrap'}}>
+          {reply}
+        </div>
+      )}
+    </main>
+  )
+}

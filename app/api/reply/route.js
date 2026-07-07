@@ -15,7 +15,7 @@ export async function POST(req) {
         { role: "system", content: "You are a professional email assistant. Write short, polite replies." },
         { role: "user", content: `Write a professional reply to this email:\n\n${email}` }
       ],
-      model: "llama3-8b-8192",
+      model: "llama-3.1-8b-instant",
       max_tokens: 300
     })
 

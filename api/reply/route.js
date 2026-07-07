@@ -8,12 +8,14 @@ export async function POST(req) {
       'Authorization': `Bearer ${process.env.GROK_API_KEY}`
     },
     body: JSON.stringify({
-      model: 'grok-beta',
+      model: 'grok-2-1212',
       messages: [{role: 'user', content: `Write a professional email reply to this: ${email}`}],
-      temperature: 0.7
+      temperature: 0.7,
+      max_tokens: 500
     })
   })
 
   const data = await res.json()
-  return Response.json({reply: data.choices[0].message.content})
-}
+  
+  if (!res.ok) {
+    return Response.json({
